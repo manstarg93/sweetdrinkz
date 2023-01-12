@@ -14,6 +14,14 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/:singleCocktail" element={<SingleCocktail />} />
           <Route path="/favourites" element={<Favourite />} />
+          <Route
+            path="*"
+            element={
+              <div className="center">
+                404 Error - Opps you've wandered too far
+              </div>
+            }
+          />
         </Route>
       </Routes>
     </AppMain>
