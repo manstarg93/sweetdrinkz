@@ -4,7 +4,7 @@ export const navData = [
     link: '/',
   },
   {
-    category: 'favourite',
+    category: 'favourites',
     link: '/favourites',
   },
 ];
