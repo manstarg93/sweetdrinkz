@@ -1,7 +1,6 @@
 import Grid from '../../components/gridUi/Grid';
 import { useAppContext } from '../../hooks/useAppContext';
 import Cocktail from './Cocktail';
-import { CockTailContainer } from './Cocktails.styled';
 
 const Cocktails = () => {
   const { data, isLoading, isError, filteredCategory } = useAppContext();
@@ -12,7 +11,7 @@ const Cocktails = () => {
       {isError && <h3 className="center">Unable to retrieve Data.</h3>}
       <Grid>
         {filteredCategory === 'all'
-          ? data.drinks?.map((drink) => {
+          ? data?.drinks?.map((drink) => {
               return <Cocktail key={drink.idDrink} {...drink} />;
             }) ?? <h3>No drinks matches result</h3>
           : data?.drinks

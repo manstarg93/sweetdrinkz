@@ -1,7 +1,19 @@
 import { useNavigate } from 'react-router-dom';
 import { CocktailContainer, CocktailFooterContainer } from './Cocktail.styles';
 
-const Cocktail = ({ idDrink, strGlass, strDrink, strDrinkThumb }) => {
+type CocktailProps = {
+  idDrink: string;
+  strGlass: string;
+  strDrink: string;
+  strDrinkThumb: string;
+};
+
+const Cocktail = ({
+  idDrink,
+  strGlass,
+  strDrink,
+  strDrinkThumb,
+}: CocktailProps) => {
   const navigate = useNavigate();
   return (
     <CocktailContainer onClick={() => navigate(`/${idDrink}`)}>

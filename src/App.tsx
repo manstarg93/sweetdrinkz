@@ -2,9 +2,10 @@ import './App.styles.js';
 import { Route, Routes } from 'react-router-dom';
 import NavBar from './components/nav/NavBar';
 import Home from './pages/Home';
-import { AppMain } from './App.styles.js';
-import Favourite from './pages/Favourite.js';
-import SingleCocktail from './pages/SingleCocktail.js';
+
+import Favourite from './pages/Favourite';
+import SingleCocktail from './pages/SingleCocktail';
+import { AppMain } from './App.styles';
 
 function App() {
   return (

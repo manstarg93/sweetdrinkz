@@ -1,5 +1,5 @@
 import Search from '../components/search/Search';
-import CocktailFilter from '../features/CocktailFilter';
+import CocktailFilter from '../features/cocktails/CocktailFilter';
 import Cocktails from '../features/cocktails/Cocktails';
 
 import { HomeContainer } from './Home.styles';

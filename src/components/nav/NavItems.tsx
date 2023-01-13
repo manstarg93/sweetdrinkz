@@ -4,7 +4,11 @@ import {
   NavItemsContainer,
 } from './NavItems.styles';
 
-const NavItems = ({ data }) => {
+type NavItemsType = {
+  data: { category: 'string'; link: 'string' }[];
+};
+
+const NavItems = ({ data }: NavItemsType) => {
   return (
     <NavItemsContainer>
       {data.map((nav) => {

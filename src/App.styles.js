@@ -7,6 +7,5 @@ export const AppMain = styled.main`
   background-color: ${variables.primary};
   min-height: 100vh;
 
-  min-width: 100vw;
   color: ${variables.white};
 `;

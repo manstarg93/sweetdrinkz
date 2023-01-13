@@ -1,10 +1,8 @@
-import { ButtonContainer } from '../components/button/Button.styled';
-
-import { cocktailNav } from '../data/cocktailNavData';
-import { useAppContext } from '../hooks/useAppContext';
+import { cocktailNav } from '../../data/cocktailNavData';
+import { useAppContext } from '../../hooks/useAppContext';
 import {
   CocktailFilterContainer,
-  FilterButtonContailer,
+  FilterButtonContainer,
 } from './CocktailFilter.styles';
 const CocktailFilter = () => {
   const { filteredCategory, setFilteredCategory } = useAppContext();
@@ -14,14 +12,13 @@ const CocktailFilter = () => {
         const { category } = filt;
 
         return (
-          <FilterButtonContailer
+          <FilterButtonContainer
             key={category}
             isActive={filteredCategory === category}
+            onClick={() => setFilteredCategory(category)}
           >
-            <ButtonContainer onClick={() => setFilteredCategory(category)}>
-              {category}
-            </ButtonContainer>
-          </FilterButtonContailer>
+            {category}
+          </FilterButtonContainer>
         );
       })}
     </CocktailFilterContainer>

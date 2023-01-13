@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 import { variables } from '../../styles/globalStyle';
 
-export const ButtonContainer = styled.button`
+type ButonStyleProps = {
+  isActive: boolean;
+};
+
+export const ButtonContainer = styled.button<ButonStyleProps>`
   font-size: 1.1rem;
   padding: 0.5rem;
   color: ${variables.white};

@@ -13,6 +13,7 @@ import {
   SingleCocktailDescription,
   SingleCocktailImg,
 } from './SingleCocktail.styles';
+import Button from '../components/button/Button';
 
 const SingleCocktail = () => {
   const { singleCocktail } = useParams();
@@ -90,18 +91,20 @@ const SingleCocktail = () => {
                   </p>
                   <AddRemoveContainer>
                     <AddButtonContainer
+                      isActive={false}
                       onClick={() => addToFavouriteHandler(idDrink)}
                     >
                       {' '}
                       Add to favourite
                     </AddButtonContainer>
                     {favourite.find((dri) => dri.idDrink === idDrink) && (
-                      <ButtonContainer
+                      <Button
                         onClick={() => removeDrinkHandler(idDrink)}
+                        isActive={false}
                       >
                         {' '}
                         remove drink
-                      </ButtonContainer>
+                      </Button>
                     )}
                   </AddRemoveContainer>
                 </SingleCocktailDescription>
