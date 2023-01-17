@@ -1,6 +1,8 @@
 import { useAppContext } from '../../hooks/useAppContext';
 import { SearchContainer, SearchInput } from './Search.styles';
 import { FaSearch } from 'react-icons/fa';
+import { useContext } from 'react';
+import { AppContext } from '../../store/AppContext';
 
 const Search = () => {
   const { searchText, setSearchText } = useAppContext();

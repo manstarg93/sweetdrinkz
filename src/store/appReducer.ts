@@ -1,10 +1,34 @@
-export const initialState = {
-  searchText: '',
-  filteredCategory: 'all',
-  favourite: [],
+import { IFavourite } from '../types/IFavourite';
+
+export type IDrinkState = {
+  favourite: IFavourite;
+  searchText: string;
+  filteredCategory: string;
 };
 
-export const appReducer = (state, action) => {
+export const initialState: IDrinkState = {
+  favourite: [],
+  searchText: '',
+  filteredCategory: 'all',
+};
+
+export enum actionTypes {
+  setSearchText = 'SEARCH_TEXT',
+  setFilteredCategory = 'SET_FILTERED_CATEGORY',
+  addToFavourite = 'ADD_TO_FAVOURITE',
+  removeFromFavourite = 'REMOVE_FROM_FAVOURITE',
+}
+
+type ACTIONTYPE =
+  | { type: actionTypes.setSearchText; payload: string }
+  | { type: actionTypes.addToFavourite; payload: IFavourite }
+  | { type: actionTypes.removeFromFavourite; payload: IFavourite }
+  | { type: actionTypes.setFilteredCategory; payload: string };
+
+export const appReducer = (
+  state: IDrinkState,
+  action: ACTIONTYPE
+): IDrinkState => {
   const { type, payload } = action;
 
   switch (type) {
@@ -32,11 +56,4 @@ export const appReducer = (state, action) => {
     default:
       return state;
   }
-};
-
-export const actionTypes = {
-  setSearchText: 'SEARCH_TEXT',
-  setFilteredCategory: 'SET_FILTERED_CATEGORY',
-  addToFavourite: 'ADD_TO_FAVOURITE',
-  removeFromFavourite: 'REMOVE_FROM_FAVOURITE',
 };

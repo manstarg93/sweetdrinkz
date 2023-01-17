@@ -5,7 +5,7 @@ import {
 } from './NavItems.styles';
 
 type NavItemsType = {
-  data: { category: 'string'; link: 'string' }[];
+  data: { category: string; link: string }[];
 };
 
 const NavItems = ({ data }: NavItemsType) => {

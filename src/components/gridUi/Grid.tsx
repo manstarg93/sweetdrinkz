@@ -1,6 +1,10 @@
 import { GridContainer } from './Grid.styles';
 
-const Grid = ({ children }) => {
+type gridType = {
+  children: React.ReactNode;
+};
+
+const Grid = ({ children }: gridType) => {
   return <GridContainer>{children}</GridContainer>;
 };
 export default Grid;

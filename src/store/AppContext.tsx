@@ -1,44 +1,50 @@
-import { createContext, useReducer } from 'react';
+import React, { createContext, useReducer } from 'react';
+import { AppContextInterface } from '../features/@types.cocktailTypes';
 import { useFetch } from '../hooks/useFetch';
 import { actionTypes, appReducer, initialState } from './appReducer';
 
-interface AppContextInterface {
+export const AppContext = createContext<AppContextInterface>({
   data: {
-    drinks: {
-      idDrink: string;
-      strAlcoholic: string;
-      strDrinkThumb: string;
-      strGlass: string;
-      strDrink: string;
-      strInstructions: string;
-      strIngredient1: string;
-      strIngredient2: string;
-      strIngredient3: string;
-      strIngredient4: string;
+    drinks: [
+      {
+        idDrink: '',
+        strAlcoholic: '',
+        strDrinkThumb: '',
+        strGlass: '',
+        strDrink: '',
+        strInstructions: '',
+        strIngredient1: '',
+        strIngredient2: '',
+        strIngredient3: '',
+        strIngredient4: '',
 
-      strIngredient5;
-    }[];
-  } | null;
-  isError: boolean;
-  isLoading: boolean;
-  searchText: string;
-  setSearchText: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  filteredCategory: string;
-  setFilteredCategory: (value: string) => void;
-  favourite: {
-    idDrink: string;
-    strAlcoholic: string;
-    strDrinkThumb: string;
-    strGlass: string;
-    strDrink: string;
-  }[];
-  addToFavourite: (id: string) => void;
-  removeFromFavourite: (id: string) => void;
+        strIngredient5: '',
+      },
+    ],
+  },
+  isError: true,
+  isLoading: true,
+  searchText: '',
+  setSearchText: () => null,
+  filteredCategory: 'all',
+  setFilteredCategory: () => null,
+  favourite: [
+    {
+      idDrink: '',
+      strAlcoholic: '',
+      strDrinkThumb: '',
+      strGlass: '',
+      strDrink: '',
+    },
+  ],
+  addToFavourite: (id: string) => null,
+  removeFromFavourite: (id: string) => null,
+});
+
+interface IAppProvider {
+  children: React.ReactNode;
 }
-
-export const AppContext = createContext<AppContextInterface | null>(null);
-
-export const AppProvider = ({ children }) => {
+export const AppProvider = ({ children }: IAppProvider) => {
   const [{ searchText, filteredCategory, favourite }, dispatch] = useReducer(
     appReducer,
     initialState
@@ -47,7 +53,7 @@ export const AppProvider = ({ children }) => {
 
   const { data, isError, isLoading } = useFetch(url);
 
-  const dispatchHandler = (type, payload) => {
+  const dispatchHandler = (type: actionTypes, payload: any) => {
     dispatch({
       type,
       payload,
@@ -63,13 +69,13 @@ export const AppProvider = ({ children }) => {
   };
 
   const addToFavourite = (id: string) => {
-    if (favourite.reduce((acc, curr) => curr.idDrink === id, '')) {
+    if (favourite.some((drink) => drink.idDrink === id)) {
       return;
     }
 
     dispatchHandler(actionTypes.addToFavourite, [
       ...favourite,
-      data.drinks.find((drink) => drink.idDrink === id),
+      data?.drinks.find((drink) => drink.idDrink === id),
     ]);
   };
 
@@ -91,6 +97,7 @@ export const AppProvider = ({ children }) => {
     favourite,
     addToFavourite,
     removeFromFavourite,
+    children,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

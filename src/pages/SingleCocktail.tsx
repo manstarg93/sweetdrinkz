@@ -21,11 +21,11 @@ const SingleCocktail = () => {
     useAppContext();
 
   const navigate = useNavigate();
-  const addToFavouriteHandler = (id) => {
+  const addToFavouriteHandler = (id: string) => {
     addToFavourite(id);
   };
 
-  const removeDrinkHandler = (id) => {
+  const removeDrinkHandler = (id: string) => {
     removeFromFavourite(id);
     navigate(-1);
   };
